@@ -1,8 +1,8 @@
 import * as jose from "jose";
 import * as crypto from "crypto";
 import * as cookie from "cookie";
-import { env } from "../lib/env";
-import { getDb } from "../queries/connection";
+import { env } from "./lib/env";
+import { getDb } from "./queries/connection";
 import { users } from "@db/schema";
 import { eq } from "drizzle-orm";
 
