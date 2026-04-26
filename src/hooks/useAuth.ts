@@ -1,7 +1,6 @@
 import { trpc } from "@/providers/trpc";
 import { useCallback, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router";
-import { LOGIN_PATH } from "@/const";
 
 type UseAuthOptions = {
   redirectOnUnauthenticated?: boolean;
@@ -9,11 +8,10 @@ type UseAuthOptions = {
 };
 
 export function useAuth(options?: UseAuthOptions) {
-  const { redirectOnUnauthenticated = false, redirectPath = LOGIN_PATH } =
+  const { redirectOnUnauthenticated = false, redirectPath = "/login" } =
     options ?? {};
 
   const navigate = useNavigate();
-
   const utils = trpc.useUtils();
 
   const {

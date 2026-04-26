@@ -14,9 +14,9 @@ import {
 
 export const users = mysqlTable("users", {
   id: serial("id").primaryKey(),
-  unionId: varchar("unionId", { length: 255 }).notNull().unique(),
+  email: varchar("email", { length: 320 }).notNull().unique(),
+  passwordHash: varchar("password_hash", { length: 255 }).notNull(),
   name: varchar("name", { length: 255 }),
-  email: varchar("email", { length: 320 }),
   avatar: text("avatar"),
   role: mysqlEnum("role", ["user", "admin", "analyst"]).default("user").notNull(),
   subscriptionTier: mysqlEnum("subscription_tier", ["free", "pro", "analyst"]).default("free").notNull(),

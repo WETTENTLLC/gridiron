@@ -6,10 +6,8 @@ import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
 import { appRouter } from "./router";
 import { createContext } from "./context";
 import { env } from "./lib/env";
-import { createOAuthCallbackHandler } from "./kimi/auth";
 import { handlePayPalWebhook } from "./paypal-webhook";
-import { syncTeams, syncScheduleAndScores, syncOdds } from "./ingestion/sync";
-import { Paths } from "@contracts/constants";
+import { syncScheduleAndScores, syncOdds } from "./ingestion/sync";
 
 const app = new Hono<{ Bindings: HttpBindings }>();
 
@@ -21,7 +19,6 @@ app.use(
   }),
 );
 app.use(bodyLimit({ maxSize: 50 * 1024 * 1024 }));
-app.get(Paths.oauthCallback, createOAuthCallbackHandler());
 
 // PayPal webhook
 app.post("/api/webhooks/paypal", handlePayPalWebhook);
