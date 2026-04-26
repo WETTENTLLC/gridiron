@@ -1,8 +1,12 @@
+import { useState } from "react";
 import { Link } from "react-router";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { trpc } from "@/providers/trpc";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
+import { toast } from "sonner";
 import {
   Activity,
   Brain,
@@ -15,6 +19,9 @@ import {
   BarChart3,
   Radio,
   ChevronRight,
+  Mail,
+  Loader2,
+  Check,
 } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -29,6 +36,17 @@ const staggerContainer = {
 };
 
 export default function Home() {
+  const [waitlistEmail, setWaitlistEmail] = useState("");
+  const [joined, setJoined] = useState(false);
+  const { data: waitlistData } = trpc.waitlist.count.useQuery();
+  const joinMutation = trpc.waitlist.join.useMutation({
+    onSuccess: () => {
+      setJoined(true);
+      toast.success("You're on the list!");
+    },
+    onError: () => toast.error("Something went wrong"),
+  });
+
   return (
     <div className="min-h-screen bg-[#0a0f1c] text-white">
       <Navigation />
@@ -54,7 +72,7 @@ export default function Home() {
             <motion.div variants={fadeInUp} className="mb-6">
               <span className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-1.5 text-xs font-semibold tracking-wider text-amber-400 uppercase">
                 <Zap className="h-3.5 w-3.5" />
-                Phase 1: Predictor Score Paradigm
+                Beta — Free Early Access
               </span>
             </motion.div>
 
@@ -88,8 +106,8 @@ export default function Home() {
                 className="bg-amber-500 hover:bg-amber-600 text-black font-semibold px-8 h-12"
                 asChild
               >
-                <Link to="/dashboard">
-                  Launch Platform
+                <Link to="/login">
+                  Join the Beta
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
@@ -101,6 +119,44 @@ export default function Home() {
               >
                 <Link to="/games">Explore Scores</Link>
               </Button>
+            </motion.div>
+
+            {/* Waitlist Email Capture */}
+            <motion.div variants={fadeInUp} className="mt-8">
+              {joined ? (
+                <div className="flex items-center gap-2 text-emerald-400 text-sm">
+                  <Check className="h-4 w-4" />
+                  You're on the early access list!
+                </div>
+              ) : (
+                <div className="flex gap-2 max-w-md">
+                  <Input
+                    type="email"
+                    placeholder="Enter your email for early access"
+                    value={waitlistEmail}
+                    onChange={(e) => setWaitlistEmail(e.target.value)}
+                    className="bg-white/5 border-white/10 text-white placeholder:text-slate-600 h-11"
+                  />
+                  <Button
+                    className="bg-white/10 hover:bg-white/20 text-white h-11 px-4"
+                    onClick={() => {
+                      if (waitlistEmail) joinMutation.mutate({ email: waitlistEmail });
+                    }}
+                    disabled={joinMutation.isPending}
+                  >
+                    {joinMutation.isPending ? (
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                    ) : (
+                      <Mail className="h-4 w-4" />
+                    )}
+                  </Button>
+                </div>
+              )}
+              {(waitlistData?.count ?? 0) > 0 && (
+                <p className="text-xs text-slate-600 mt-2">
+                  {waitlistData?.count} people on the waitlist
+                </p>
+              )}
             </motion.div>
 
             <motion.div
@@ -315,8 +371,9 @@ export default function Home() {
               variants={fadeInUp}
               className="mt-4 text-lg text-slate-400 max-w-2xl mx-auto"
             >
-              Join the first intelligence platform built exclusively for sports
-              content creators. No betting angles. Pure analytical credibility.
+              Join the beta — free access to the first intelligence platform
+              built exclusively for sports content creators. No betting angles.
+              Pure analytical credibility.
             </motion.p>
             <motion.div
               variants={fadeInUp}
@@ -327,8 +384,8 @@ export default function Home() {
                 className="bg-amber-500 hover:bg-amber-600 text-black font-semibold px-8 h-12"
                 asChild
               >
-                <Link to="/dashboard">
-                  Get Started
+                <Link to="/login">
+                  Create Free Account
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>

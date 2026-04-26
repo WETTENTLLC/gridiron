@@ -214,3 +214,12 @@ export const syncLogs = mysqlTable("sync_logs", {
 });
 
 export type SyncLog = typeof syncLogs.$inferSelect;
+
+export const waitlist = mysqlTable("waitlist", {
+  id: serial("id").primaryKey(),
+  email: varchar("email", { length: 320 }).notNull().unique(),
+  source: varchar("source", { length: 100 }).default("website"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type WaitlistEntry = typeof waitlist.$inferSelect;

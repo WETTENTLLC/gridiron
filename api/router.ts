@@ -3,6 +3,7 @@ import { nflRouter } from "./nfl-router";
 import { aiRouter } from "./ai-router";
 import { subscriptionRouter } from "./subscription-router";
 import { syncRouter } from "./sync-router";
+import { waitlistRouter } from "./waitlist-router";
 import { createRouter, publicQuery } from "./middleware";
 
 export const appRouter = createRouter({
@@ -12,6 +13,7 @@ export const appRouter = createRouter({
   ai: aiRouter,
   subscription: subscriptionRouter,
   sync: syncRouter,
+  waitlist: waitlistRouter,
 });
 
 export type AppRouter = typeof appRouter;
