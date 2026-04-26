@@ -1,0 +1,12 @@
+[build]
+builder = "nixpacks"
+buildCommand = "npm ci && npm run build:backend"
+
+[deploy]
+startCommand = "npm start"
+healthcheckPath = "/api/trpc/ping"
+restartPolicyType = "on_failure"
+restartPolicyMaxRetries = 3
+
+[service]
+internalPort = 3000
