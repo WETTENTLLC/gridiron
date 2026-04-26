@@ -7,7 +7,7 @@ import { appRouter } from "./router";
 import { createContext } from "./context";
 import { env } from "./lib/env";
 import { handlePayPalWebhook } from "./paypal-webhook";
-import { syncScheduleAndScores, syncOdds } from "./ingestion/sync";
+import { syncTeams, syncScheduleAndScores, syncOdds } from "./ingestion/sync";
 
 const app = new Hono<{ Bindings: HttpBindings }>();
 
@@ -30,9 +30,10 @@ app.post("/api/cron/sync", async (c) => {
     return c.json({ error: "Unauthorized" }, 401);
   }
   try {
+    const teams = await syncTeams();
     const scores = await syncScheduleAndScores();
     const odds = await syncOdds();
-    return c.json({ success: true, scores, odds });
+    return c.json({ success: true, teams, scores, odds });
   } catch (err: any) {
     return c.json({ error: err.message }, 500);
   }
