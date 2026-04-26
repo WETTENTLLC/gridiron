@@ -14,7 +14,14 @@ const app = new Hono<{ Bindings: HttpBindings }>();
 app.use(
   "*",
   cors({
-    origin: env.isProduction ? env.appUrl : "http://localhost:3000",
+    origin: (origin) => {
+      if (!origin) return env.appUrl;
+      if (!env.isProduction) return origin;
+      // Allow the main app URL and all Vercel preview URLs
+      if (origin === env.appUrl) return origin;
+      if (origin.endsWith(".vercel.app")) return origin;
+      return env.appUrl;
+    },
     credentials: true,
   }),
 );
