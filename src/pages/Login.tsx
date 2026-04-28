@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
-import { Loader2, Activity } from "lucide-react";
+import { Loader2 } from "lucide-react";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -42,11 +42,14 @@ export default function Login() {
       <Card className="w-full max-w-sm bg-white/[0.03] border-white/10">
         <CardHeader className="text-center">
           <div className="flex justify-center mb-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-amber-400 to-amber-600">
-              <Activity className="h-5 w-5 text-white" />
-            </div>
+            <img
+              src="/GridIronIQ Logo.png"
+              alt="GridIron IQ"
+              className="h-10 w-10 rounded-lg object-contain"
+              style={{ mixBlendMode: "screen" }}
+            />
           </div>
-          <CardTitle className="text-white">GridIron Intelligence</CardTitle>
+          <CardTitle className="text-white">GridIron IQ</CardTitle>
         </CardHeader>
         <CardContent>
           <Tabs defaultValue="login">

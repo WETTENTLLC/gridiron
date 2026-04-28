@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { Activity, Github, Twitter, Linkedin } from "lucide-react";
+import { Github, Twitter, Linkedin } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -8,12 +8,15 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="md:col-span-1">
             <Link to="/" className="flex items-center gap-2.5 mb-4">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-amber-400 to-amber-600">
-                <Activity className="h-4 w-4 text-white" />
-              </div>
+              <img
+                src="/GridIronIQ Logo.png"
+                alt="GridIron IQ"
+                className="h-8 w-8 rounded-lg object-contain"
+                style={{ mixBlendMode: "screen" }}
+              />
               <div className="flex flex-col">
                 <span className="text-sm font-bold text-white leading-none">GRIDIRON</span>
-                <span className="text-[10px] font-medium tracking-widest text-amber-400 uppercase leading-none mt-0.5">Intelligence</span>
+                <span className="text-[10px] font-medium tracking-widest text-amber-400 uppercase leading-none mt-0.5">IQ</span>
               </div>
             </Link>
             <p className="text-sm text-slate-500 leading-relaxed">
@@ -58,7 +61,7 @@ export default function Footer() {
 
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-slate-600">
-            © 2026 GridIron Intelligence. All rights reserved. Not affiliated with the NFL.
+            © 2026 GridIron IQ. All rights reserved. Not affiliated with the NFL.
           </p>
           <div className="flex gap-6">
             <a href="#" className="text-xs text-slate-600 hover:text-slate-400 transition-colors">Privacy</a>

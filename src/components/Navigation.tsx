@@ -46,15 +46,18 @@ export default function Navigation() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 lg:px-6">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2.5 group">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-amber-400 to-amber-600 shadow-lg shadow-amber-500/20 group-hover:shadow-amber-500/40 transition-shadow">
-            <Activity className="h-5 w-5 text-white" />
-          </div>
+          <img
+            src="/GridIronIQ Logo.png"
+            alt="GridIron IQ"
+            className="h-9 w-9 rounded-lg object-contain"
+            style={{ mixBlendMode: "screen" }}
+          />
           <div className="flex flex-col">
             <span className="text-sm font-bold tracking-tight text-white leading-none">
               GRIDIRON
             </span>
             <span className="text-[10px] font-medium tracking-widest text-amber-400 uppercase leading-none mt-0.5">
-              Intelligence
+              IQ
             </span>
           </div>
         </Link>
@@ -132,11 +135,14 @@ export default function Navigation() {
               <div className="flex flex-col h-full">
                 <div className="flex items-center justify-between p-4 border-b border-white/10">
                   <div className="flex items-center gap-2.5">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-amber-400 to-amber-600">
-                      <Activity className="h-4 w-4 text-white" />
-                    </div>
+                    <img
+                      src="/GridIronIQ Logo.png"
+                      alt="GridIron IQ"
+                      className="h-8 w-8 rounded-lg object-contain"
+                      style={{ mixBlendMode: "screen" }}
+                    />
                     <span className="text-sm font-bold text-white">
-                      GRIDIRON
+                      GRIDIRON IQ
                     </span>
                   </div>
                   <SheetClose asChild>
