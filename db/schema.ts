@@ -223,3 +223,19 @@ export const waitlist = mysqlTable("waitlist", {
 });
 
 export type WaitlistEntry = typeof waitlist.$inferSelect;
+
+export const posts = mysqlTable("posts", {
+  id: serial("id").primaryKey(),
+  slug: varchar("slug", { length: 255 }).notNull().unique(),
+  title: varchar("title", { length: 255 }).notNull(),
+  excerpt: varchar("excerpt", { length: 500 }).notNull(),
+  content: text("content").notNull(),
+  coverImage: text("cover_image"),
+  authorName: varchar("author_name", { length: 255 }).default("GridIron Intelligence"),
+  tags: json("tags"),
+  published: boolean("published").default(true),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().notNull().$onUpdate(() => new Date()),
+});
+
+export type Post = typeof posts.$inferSelect;

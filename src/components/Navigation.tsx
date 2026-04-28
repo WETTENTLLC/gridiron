@@ -21,6 +21,7 @@ import {
   ChevronRight,
   Activity,
   Crown,
+  BookOpen,
 } from "lucide-react";
 
 const navItems = [
@@ -29,6 +30,7 @@ const navItems = [
   { path: "/narratives", label: "Narratives", icon: FileText },
   { path: "/studio", label: "Studio", icon: MonitorPlay },
   { path: "/analysts", label: "Analysts", icon: Users },
+  { path: "/blog", label: "Insights", icon: BookOpen },
   { path: "/pricing", label: "Pricing", icon: Crown },
 ];
 

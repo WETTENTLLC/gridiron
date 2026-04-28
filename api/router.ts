@@ -4,6 +4,7 @@ import { aiRouter } from "./ai-router";
 import { subscriptionRouter } from "./subscription-router";
 import { syncRouter } from "./sync-router";
 import { waitlistRouter } from "./waitlist-router";
+import { blogRouter } from "./blog-router";
 import { createRouter, publicQuery } from "./middleware";
 
 export const appRouter = createRouter({
@@ -14,6 +15,7 @@ export const appRouter = createRouter({
   subscription: subscriptionRouter,
   sync: syncRouter,
   waitlist: waitlistRouter,
+  blog: blogRouter,
 });
 
 export type AppRouter = typeof appRouter;

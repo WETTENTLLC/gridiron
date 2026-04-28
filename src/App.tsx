@@ -7,6 +7,8 @@ import Narratives from './pages/Narratives'
 import Studio from './pages/Studio'
 import Analysts from './pages/Analysts'
 import Pricing from './pages/Pricing'
+import Blog from './pages/Blog'
+import BlogPost from './pages/BlogPost'
 import Login from './pages/Login'
 import NotFound from './pages/NotFound'
 
@@ -21,6 +23,8 @@ export default function App() {
       <Route path="/studio" element={<Studio />} />
       <Route path="/analysts" element={<Analysts />} />
       <Route path="/pricing" element={<Pricing />} />
+      <Route path="/blog" element={<Blog />} />
+      <Route path="/blog/:slug" element={<BlogPost />} />
       <Route path="/login" element={<Login />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
